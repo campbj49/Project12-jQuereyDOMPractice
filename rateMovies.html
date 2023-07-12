@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rate Movies</title>
+  </head>
+  <body>
+    <form class = "form">
+        <h1>Rate Movies</h1>
+          <p>
+              Title
+              <input type="text" id="title" value="Enter Title">
+          </p>
+          <p>
+              Score
+              <input type="number" id="score" min="0" max="10" value="0">
+          </p>
+        <button type="submit" id ="create">Submit Review</button>
+    </form>
+    <section id = "reviewList"></section>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $("form").submit((e)=>{
+            e.preventDefault();
+            let title =$("#title").val();
+            if(title.length <2){
+                alert("Title must be at least two characters long.");
+                return;
+            }
+            let $review = $("<p>").text(title+" "+ $("#score").val()+"  ");
+            let $button = $("<button>")
+                .text("Delete")
+                .click(e=>e.target.parentElement.remove()); 
+            $review.append($button);   
+            $("#reviewList").append($review);
+        })
+    </script>
+  </body>
+</html>
